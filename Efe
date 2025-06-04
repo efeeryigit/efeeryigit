@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efe Eryiğit | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #1f2937; /* Darker base background (gray-800) */
+            color: #d1d5db; /* Lighter text for dark background (gray-300) */
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #f59e0b; /* Amber-500 for accent */
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        nav a {
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #f59e0b; /* Amber-500 for accent */
+        }
+        .experience-card { /* For non-modal cards if any, or general card styling */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+        }
+        .hero-bg {
+             background-color: #111827; /* Even darker for hero (gray-900) */
+        }
+        .card-bg {
+            background-color: #374151; /* Slightly lighter dark for cards (gray-700) */
+        }
+        .text-accent {
+            color: #f59e0b; /* Amber-500 */
+        }
+        .button-accent {
+            background-color: #f59e0b; /* Amber-500 */
+            color: #1f2937; /* Dark text on accent button */
+            transition: background-color 0.3s ease;
+        }
+        .button-accent:hover {
+            background-color: #d97706; /* Amber-600 */
+        }
+        .modal-backdrop-color {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content-bg {
+             background-color: #374151; /* gray-700 for modal content */
+        }
+         /* Custom scrollbar for gallery (optional) */
+        .gallery-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .gallery-scroll::-webkit-scrollbar-track {
+            background: #4b5563; /* gray-600 */
+            border-radius: 10px;
+        }
+        .gallery-scroll::-webkit-scrollbar-thumb {
+            background: #9ca3af; /* gray-400 */
+            border-radius: 10px;
+        }
+        .gallery-scroll::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* gray-500 */
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-slate-800 shadow-xl fixed w-full z-50 top-0">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-amber-400">Efe Eryiğit</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-slate-300 hover:text-amber-400">About</a>
+                <a href="#experience" class="text-slate-300 hover:text-amber-400">Experience</a>
+                <a href="#skills" class="text-slate-300 hover:text-amber-400">Skills</a>
+                <a href="#education" class="text-slate-300 hover:text-amber-400">Education</a>
+                <a href="#extracurricular" class="text-slate-300 hover:text-amber-400">Activities</a>
+                <a href="#contact" class="text-slate-300 hover:text-amber-400">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="nav-toggle" class="text-slate-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav -->
+        <div id="mobile-nav" class="md:hidden hidden bg-slate-800 shadow-lg py-2">
+            <a href="#about" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">About</a>
+            <a href="#experience" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">Experience</a>
+            <a href="#skills" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">Skills</a>
+            <a href="#education" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">Education</a>
+            <a href="#extracurricular" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">Activities</a>
+            <a href="#contact" class="block px-6 py-3 text-slate-300 hover:bg-slate-700 hover:text-amber-400">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg text-slate-100 pt-32 pb-20 md:pt-48 md:pb-32 flex flex-col md:flex-row items-center justify-center text-center md:text-left">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/3 mb-8 md:mb-0 md:mr-12 flex justify-center">
+                <!-- IMPORTANT: Replace this placeholder src with your actual_image_url.jpg -->
+                <img src="https://placehold.co/200x200/374151/f59e0b?text=Efe" alt="Basri Efe Eryiğit" class="rounded-full shadow-2xl w-48 h-48 md:w-56 md:h-56 object-cover border-4 border-amber-400">
+            </div>
+            <div class="md:w-2/3">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Basri Efe Eryiğit</h1>
+                <p class="text-xl md:text-2xl font-light text-slate-300">Management Information Systems Student | Aspiring Tech Leader</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-16 md:py-24 bg-slate-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-2 text-center section-title mx-auto text-slate-100">About Me</h2>
+            <p class="text-center text-slate-300 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
+                I am a 4th-year Management Information Systems student at Özyeğin University. I am passionate about technology, digital marketing, and business development. My interest in the start-up ecosystem drives me to constantly pursue innovation and actively contribute to digital transformation processes. I am a team player, eager to learn, and have a solution-oriented mindset.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 md:py-24 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title mx-auto text-slate-100">Experience</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Experience Card: OzU Business Club -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="ozuBusinessModal">
+                    <h3 class="text-xl font-semibold text-amber-400">President</h3>
+                    <p class="text-slate-300">Ozyegin Business Club - Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">06/2024 - Present</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details & photos &rarr;</p>
+                </div>
+
+                <!-- Experience Card: Evyap -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="evyapModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Digital Marketing Intern</h3>
+                    <p class="text-slate-300">EVYAP SABUN A.Ş. - Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">02/2025 - Present</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+                
+                <!-- Experience Card: Viralight App -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="viralightModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Co-Founder</h3>
+                    <p class="text-slate-300">Viralight App - Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">02/2025 - 04/2025</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+
+                <!-- Experience Card: Fridge Buddy App -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="fridgeBuddyModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Co-Founder</h3>
+                    <p class="text-slate-300">Fridge Buddy App – Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">01/2025 – 02/2025</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+                
+                <!-- Experience Card: Zarastro Art -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="zarastroModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Volunteer Intern, Marketing, Sales</h3>
+                    <p class="text-slate-300">ZARASTRO ART - Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">08/2023 - 10/2023</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+
+                <!-- Experience Card: Asyalogic -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="asyalogicModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Part-Time Data Entry Operator</h3>
+                    <p class="text-slate-300">ASYALOGIC - Istanbul, TURKEY</p>
+                    <p class="text-sm text-slate-400">11/2022 - 12/2022</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+                
+                <!-- Experience Card: Doger Kimya -->
+                <div class="experience-card card-bg p-6 rounded-lg shadow-xl cursor-pointer" data-modal-target="dogerKimyaModal">
+                    <h3 class="text-xl font-semibold text-amber-400">Volunteer Intern</h3>
+                    <p class="text-slate-300">DOGER KIMYA TARIM LTD. STI. - Konya, TURKEY</p>
+                    <p class="text-sm text-slate-400">06/2022 - 07/2022</p>
+                    <p class="mt-3 text-sm text-amber-500 hover:text-amber-300">Click for details &rarr;</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 md:py-24 bg-slate-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title mx-auto text-slate-100">Skills & Certificates</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-amber-400">Computer Skills</h3>
+                    <ul class="list-disc list-inside text-slate-300 space-y-1">
+                        <li>MS Office (Word, Excel, Power Point)</li>
+                        <li>Python (Beginner)</li>
+                        <li>Java (Intermediate)</li>
+                        <li>SQL (Intermediate)</li>
+                        <li>HTML (Beginner)</li>
+                    </ul>
+                </div>
+                <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-amber-400">Certificates</h3>
+                    <ul class="list-disc list-inside text-slate-300 space-y-1">
+                        <li>Startcamp Entrepreneurship Camp</li>
+                        <li>TalentCoder Tech Camp</li>
+                        <li>Fundamentals of digital marketing – Google</li>
+                        <li>Apple Search Ads Certification</li>
+                    </ul>
+                </div>
+                <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-amber-400">Language Skills</h3>
+                    <ul class="list-disc list-inside text-slate-300 space-y-1">
+                        <li>English (Written and oral fluency)</li>
+                        <li>German (Beginner)</li>
+                        <li>Spanish (Beginner)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 md:py-24 bg-slate-900">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title mx-auto text-slate-100">Education</h2>
+            <div class="space-y-8">
+                <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold text-amber-400">ÖZYEĞİN UNIVERSITY</h3>
+                    <p class="text-slate-300">Faculty of Business, Department of Management Information Systems</p>
+                    <p class="text-sm text-slate-400">Istanbul, TURKEY | 2021 - Present (4th Year)</p>
+                    <p class="text-sm text-slate-400">Honors: 50% Performance Scholarship</p>
+                </div>
+                <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold text-amber-400">TED KONYA HIGH SCHOOL</h3>
+                    <p class="text-sm text-slate-400">Konya, TURKEY | 2018 - 2021</p>
+                </div>
+                 <div class="card-bg p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold text-amber-400">KONYA SOCIAL SCIENCES HIGH SCHOOL</h3>
+                    <p class="text-sm text-slate-400">Konya, TURKEY | 2016 - 2018</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Activities Section -->
+    <section id="extracurricular" class="py-16 md:py-24 bg-slate-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center section-title mx-auto text-slate-100">Extracurricular Activities</h2>
+            <ul class="list-disc list-inside text-slate-300 space-y-2 max-w-2xl mx-auto bg-slate-700 p-6 rounded-lg shadow-xl">
+                <li>President, OzU Business Club (2024 – Present)</li>
+                <li>Board Member; Head of External Communications, OzU Business Club (2023 – 2024)</li>
+                <li>Social Responsibility Project, Beyond the Adventure (2024 May – 2024 May)</li>
+                <li>Active Member, OzU Outdoor Club (2022 – Present)</li>
+                <li>Active Event Team Member, Radio OzU (2022 – Present)</li>
+                <li>Broadcaster at Radio OzU (2022 – Present)</li>
+                <li>Bachata Dancer, OzU Dance Club (2022 – Present)</li>
+                <li>Active Member, OzU Business Club (2022 – 2023)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-slate-900">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-12 section-title mx-auto text-slate-100">Contact</h2>
+            <p class="text-slate-300 mb-2 text-lg">Feel free to reach out!</p>
+            <p class="text-xl text-amber-400 font-medium mb-1">
+                <a href="mailto:befeeryigit@gmail.com" class="hover:underline">befeeryigit@gmail.com</a>
+            </p>
+            <p class="text-slate-300 mb-4 text-lg">
+                <a href="tel:+905331352051" class="hover:underline">+90 533 135 20 51</a>
+            </p>
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="https://www.linkedin.com/in/basri-efe-eryi%C4%9Fit-776362228" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-amber-400 transition-colors">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-8 text-center">
+        <p>&copy; <span id="currentYear"></span> Efe Eryiğit. All rights reserved.</p>
+    </footer>
+
+    <!-- Modals -->
+    <!-- OzU Business Club Modal -->
+    <div id="ozuBusinessModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">OzU Business Club Presidency</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>As the President of Özyeğin University Business Club, I lead a team of 100 individuals across six departments, managing all activities for our 3000 members. My core responsibilities include organizing career events that bridge students with the professional world, conducting corporate negotiations, and providing students with comprehensive insights into corporate life.</p>
+                <p>This role has equipped me with significant experience in strategic planning, team management, event organization, and stakeholder relations. Below are some visuals from events organized by our club:</p>
+                <div class="relative w-full mt-6">
+                    <div id="galleryContainerOzu" class="overflow-hidden rounded-lg shadow-md">
+                        <div id="gallerySliderOzu" class="flex transition-transform duration-500 ease-in-out">
+                            <!-- IMPORTANT: Replace these placeholder src with your actual_image_urls -->
+                            <img src="https://placehold.co/800x500/4b5563/eab308?text=OzU+Club+Collage+(WA0021)" alt="OzU Business Club Event Collage" class="gallery-image w-full flex-shrink-0 object-contain max-h-[50vh] rounded-lg">
+                            <img src="https://placehold.co/800x500/4b5563/eab308?text=Marketing+MUWEEK+(WA0022)" alt="Marketing MUWEEK Event" class="gallery-image w-full flex-shrink-0 object-contain max-h-[50vh] rounded-lg">
+                            <img src="https://placehold.co/800x500/4b5563/eab308?text=HIQ+Talks+(WA0020)" alt="HIQ Talks Event" class="gallery-image w-full flex-shrink-0 object-contain max-h-[50vh] rounded-lg">
+                            <img src="https://placehold.co/800x500/4b5563/eab308?text=She+Means+Business+(WA0024)" alt="She Means Business Event" class="gallery-image w-full flex-shrink-0 object-contain max-h-[50vh] rounded-lg">
+                        </div>
+                    </div>
+                    <button class="gallery-prev absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button class="gallery-next absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div class="gallery-dots absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
+                </div>
+                 <ul class="mt-4 list-disc list-inside">
+                    <li>Organized career events with 3000 members.</li>
+                    <li>Conducted corporate conversations with companies and performed research on companies meeting specific criteria.</li>
+                    <li>Led a team of 100 people from six different departments.</li>
+                    <li>Provided comprehensive information to students about corporate life.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Evyap Modal -->
+    <div id="evyapModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Digital Marketing Intern - EVYAP SABUN A.Ş.</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>As a Digital Marketing Intern at EVYAP, a leading FMCG company with a diverse portfolio including major brands like Duru, Arko, and Activex, I actively contributed to enhancing their digital presence. My responsibilities involved supporting the digital marketing team in planning and executing campaigns, with a focus on SEO strategies and data analysis to optimize performance across various brands. I also played a role in managing social media content and was involved in communications with external digital agencies to coordinate marketing efforts.</p>
+                <ul class="list-disc list-inside">
+                    <li>Supported the planning and implementation of digital marketing strategies for key Evyap brands.</li>
+                    <li>Contributed to SEO optimization efforts and data analysis to improve online visibility and campaign effectiveness.</li>
+                    <li>Assisted in managing and monitoring content across various social media platforms.</li>
+                    <li>Conducted market and competitor analysis to identify digital trends and opportunities.</li>
+                    <li>Liaised with external digital marketing agencies for campaign coordination and execution.</li>
+                    <li>Gained experience in performance marketing and reporting on campaign metrics.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Viralight App Modal -->
+    <div id="viralightModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Co-Founder - Viralight App</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>As a Co-Founder of Viralight App, I played a key role in launching an AI-powered influencer management application designed to optimize content performance. My contributions spanned managing paid advertising campaigns on the App Store and social media, implementing App Store Optimization (ASO) techniques to enhance visibility and drive downloads, and collaborating closely with developers to refine user experience and overall app performance.</p>
+                 <ul class="list-disc list-inside">
+                    <li>Co-led the launch of an AI-powered influencer management application.</li>
+                    <li>Managed paid advertising campaigns on App Store and social media platforms.</li>
+                    <li>Executed App Store Optimization (ASO) strategies to increase organic downloads.</li>
+                    <li>Collaborated with the development team to improve app features and user experience.</li>
+                </ul>
+                <p class="mt-4">
+                    <a href="https://apps.apple.com/tr/app/viralight-influencer-koçu/id6741738225?l=tr" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 underline font-medium">
+                        View Viralight on the App Store &rarr;
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fridge Buddy App Modal -->
+    <div id="fridgeBuddyModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Co-Founder - Fridge Buddy App</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>In my role as Co-Founder of Fridge Buddy App, I was instrumental in developing an innovative AI-powered food tracking application. This app featured photo recognition for easy item logging and smart expiry alerts to minimize food waste. I focused on applying ASO strategies to boost organic downloads and user acquisition, and worked in tandem with developers to enhance app functionality and the user interface for a seamless experience.</p>
+                <ul class="list-disc list-inside">
+                    <li>Co-developed an AI-powered food tracking app with photo recognition and expiry alerts.</li>
+                    <li>Implemented App Store Optimization (ASO) to drive organic user acquisition.</li>
+                    <li>Worked with developers to enhance app functionality and user interface design.</li>
+                    <li>Focused on creating a user-friendly experience to help reduce food waste.</li>
+                </ul>
+                <p class="mt-4">
+                    <a href="https://apps.apple.com/tr/app/fridge-buddy-sanal-şefin/id6740440521?l=tr" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 underline font-medium">
+                        View Fridge Buddy on the App Store &rarr;
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Zarastro Art Modal -->
+    <div id="zarastroModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Volunteer Intern, Marketing & Sales - ZARASTRO ART</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>During my volunteer internship at ZARASTRO ART, I gained valuable insights into the art world, focusing on marketing and sales within the contemporary art scene. My responsibilities included learning about advertising, startup dynamics, SEM, and SEO. I also acquired practical skills in networking within the contemporary art community and organizing events. A key achievement was optimizing the company's website, which led to improvements in speed, sales, and advertisement effectiveness.</p>
+                 <ul class="list-disc list-inside">
+                    <li>Gained foundational knowledge in art marketing, sales, SEM, and SEO.</li>
+                    <li>Developed skills in contemporary art networking and event organization.</li>
+                    <li>Contributed to website optimization, resulting in improved performance and sales.</li>
+                    <li>Assisted with digital advertising efforts and content creation.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Asyalogic Modal -->
+    <div id="asyalogicModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Part-Time Data Entry Operator - ASYALOGIC</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>At ASYALOGIC, I worked as a Part-Time Data Entry Operator, where my primary role involved collecting data related to sports competitions and accurately entering it into the company's system. This position required attention to detail and the ability to process information quickly and efficiently, ensuring that data was collected in real-time and transmitted to the relevant institutions without delay.</p>
+                <ul class="list-disc list-inside">
+                    <li>Collected and entered data on sports competitions with high accuracy.</li>
+                    <li>Ensured timely transmission of data to necessary institutions.</li>
+                    <li>Developed strong attention to detail and data management skills.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Doger Kimya Modal -->
+    <div id="dogerKimyaModal" class="modal fixed inset-0 modal-backdrop-color flex items-center justify-center p-4 opacity-0 invisible z-[100]">
+        <div class="modal-content modal-content-bg p-6 md:p-8 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-amber-400">Volunteer Intern - DOGER KIMYA TARIM LTD. STI.</h3>
+                <button class="close-modal-button text-slate-400 hover:text-slate-200 text-3xl">&times;</button>
+            </div>
+            <div class="text-slate-300 space-y-4">
+                <p>My volunteer internship at DOGER KIMYA TARIM LTD. STI. provided me with foundational knowledge in the export sector. During this time, I learned about the necessary documentation and procedures for international trade. Additionally, I gained practical understanding of financial instruments such as writing checks and promissory notes, which are crucial in business operations.</p>
+                <ul class="list-disc list-inside">
+                    <li>Acquired essential information regarding export processes and documentation.</li>
+                    <li>Learned about financial instruments like checks and promissory notes.</li>
+                    <li>Gained exposure to the operational aspects of a chemical and agricultural products company.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Navigation Toggle for Mobile
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (navToggle && mobileNav) {
+            navToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                });
+            });
+        }
+
+        // Modal Functionality
+        const modalTriggers = document.querySelectorAll('[data-modal-target]');
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const modalId = trigger.dataset.modalTarget;
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    openModal(modal);
+                    // Initialize gallery if this modal is the OzU Business Club modal
+                    if (modalId === 'ozuBusinessModal') {
+                        initializeGallery(modal.querySelector('#galleryContainerOzu'), modal.querySelector('#gallerySliderOzu'), modal.querySelectorAll('.gallery-image'), modal.querySelector('.gallery-prev'), modal.querySelector('.gallery-next'), modal.querySelector('.gallery-dots'));
+                    }
+                }
+            });
+        });
+
+        const closeButtons = document.querySelectorAll('.close-modal-button');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                if (modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+
+        // Close modal when clicking on the backdrop
+        const allModals = document.querySelectorAll('.modal');
+        allModals.forEach(modal => {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        });
+        
+        function openModal(modal) {
+            if (modal) {
+                modal.classList.remove('opacity-0', 'invisible');
+                modal.classList.add('opacity-100', 'visible');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+                modal.querySelector('.modal-content').classList.add('scale-100');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modal) {
+            if (modal) {
+                modal.classList.add('opacity-0');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('invisible');
+                    modal.classList.remove('opacity-100', 'visible');
+                    modal.querySelector('.modal-content').classList.remove('scale-100');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+        
+        // Generic Gallery Initializer
+        function initializeGallery(container, slider, images, prevBtn, nextBtn, dotsContainer) {
+            if (!slider || !images || images.length === 0 || !prevBtn || !nextBtn || !dotsContainer) {
+                // console.warn('Gallery elements not found for:', container);
+                return;
+            }
+
+            let currentIndex = 0;
+            dotsContainer.innerHTML = ''; // Clear existing dots
+
+            function updateGallery() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('bg-white', index === currentIndex);
+                    dot.classList.toggle('bg-slate-500', index !== currentIndex);
+                });
+            }
+            
+            images.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('dot', 'w-2.5', 'h-2.5', 'rounded-full', 'transition-colors', 'duration-300');
+                dot.classList.toggle('bg-white', index === 0);
+                dot.classList.toggle('bg-slate-500', index !== 0);
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateGallery();
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateGallery();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateGallery();
+            });
+            
+            updateGallery(); // Initial setup
+        }
+
+
+        // Set current year in footer
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('nav').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
